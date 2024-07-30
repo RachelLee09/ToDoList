@@ -8,14 +8,36 @@
 import SwiftUI
 
 struct ContentView: View {
+   
+    @State private var showNewTask = false
+    // links views, initially second view is not shown
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        VStack{
+            HStack{
+                Text("To Do List")
+                    .font(.system(size: 40))
+                    .fontWeight(.black)
+                Spacer()
+                
+                Button{
+                    withAnimation{
+                        self.showNewTask = true
+                    }
+                } label:{
+                    Text("+")
+                }
+                .font(.system(size: 40))
+                .fontWeight(.bold)
+                
+            }
+            .padding()
+            Spacer()
         }
-        .padding()
+        if showNewTask {
+            NewToDoView()
+        }
+        // NewToDoView shows up at the bottom because we put it at the bottom of the code (after the VStack)
     }
 }
 
